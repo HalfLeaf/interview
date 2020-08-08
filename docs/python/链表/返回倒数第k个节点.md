@@ -58,7 +58,7 @@ class Solution:
 * 空间复杂度 O(1)
 
 ::: warning python源码文件位于
-/python/矩阵/返回倒数第k个节点-2020-08-08.py
+/python/链表/返回倒数第k个节点-2020-08-08.py
 :::
 
 
