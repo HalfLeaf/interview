@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "markdown-it-katex": "^2.0.3",
+    "vue": "^2.6.11",
+    "vuepress": "latest"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
@@ -16,12 +18,14 @@
     "@vue/cli-plugin-router": "~4.4.0",
     "@vue/cli-plugin-vuex": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
+    "@vuepress/plugin-back-to-top": "^1.0.0-rc.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuepress-plugin-mathjax": "^1.2.8"
   },
   "eslintConfig": {
     "root": true,
