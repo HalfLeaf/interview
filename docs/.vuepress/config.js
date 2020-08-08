@@ -6,10 +6,16 @@ module.exports = {
   port:8866,
   head: [
     ['link', { rel: 'icon', href: '/interview.png' }],
+    ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css' }],
+    ['link', { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" }]
   ],
   base: '/', // 这是部署到github相关的配置
   markdown: {
-    lineNumbers: false // 代码块显示行号
+    lineNumbers: false, // 代码块显示行号
+    config: md => {
+      md.set({html: true})
+      md.use(require("markdown-it-katex"))
+    }
   },
   themeConfig: {
     nav:[ // 导航栏配置
@@ -27,4 +33,8 @@ module.exports = {
   ],
   evergreen: true,
   activeHeaderLinks: true,
+  '@vuepress/back-to-top': true,
+  plugins: [
+    
+  ],
 };
