@@ -40,16 +40,13 @@ class Solution:
             count += 1
             # 指针下移
             cur = cur.next
-        index = count - k + 1
+        index = count - k
         i = 0
         p = head
         while i < index:
             p = p.next
             i += 1
         return p.val
-
-
-
 
 
 if __name__ == '__main__':
@@ -60,9 +57,4 @@ if __name__ == '__main__':
         cur.next = ListNode(i)
         cur = cur.next
     head = head.next
-    res = mm.kthToLast(head, 2)
-
-    ### 打印结果
-    while res:
-        print(res.val, end=" ")
-        res = res.next
+    print(mm.kthToLast(head, 2))
