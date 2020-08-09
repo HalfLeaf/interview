@@ -10,7 +10,8 @@
     "core-js": "^3.6.5",
     "markdown-it-katex": "^2.0.3",
     "vue": "^2.6.11",
-    "vuepress": "latest"
+    "vuepress": "latest",
+    "vuepress-plugin-gotop-plus": "^1.0.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",

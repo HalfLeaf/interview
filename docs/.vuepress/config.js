@@ -33,8 +33,7 @@ module.exports = {
   ],
   evergreen: true,
   activeHeaderLinks: true,
-  '@vuepress/back-to-top': true,
   plugins: [
-    
+    ['@vuepress/plugin-back-to-top', true],
   ],
 };
