@@ -5,7 +5,7 @@ module.exports = {
   author: 'Half Leaf',
   port:8866,
   head: [
-    ['link', { rel: 'icon', href: '/interview.png' }],
+    ['link', { rel: 'icon', href: '/favicon.png' }],
     ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css' }],
     ['link', { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" }]
   ],
