@@ -34,6 +34,7 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     26                                               # 方法2  ** 可以解包字典，解包完后再使用dict或者{}合并
     27         1          9.0      9.0      2.7      e = dict(**a, **b)
     29                                               # 方法3 使用 itertools.chain()
+                                                     # 通过 dict() 方式合并 传入的字典 元素必须是 String 类型的
     30         1         14.0     14.0      4.2      f =dict(chain(a.items(), b.items()))
     32                                               # 方法4  使用 collections.ChainMap()
     33         1        131.0    131.0     39.1      g = dict(ChainMap(a, b))
