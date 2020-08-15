@@ -45,3 +45,15 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
 * <on_true> if <condition> else <on_false>
 * <condition> and <on_true> or <on_false>
 * (<on_false>, <on_true>)[condition]
+  
+# 优雅的嵌套循环
+```python
+from itertools import product
+list1 = range(1, 10)
+list2 = range(2, 10)
+list3 = range(3, 10)
+for item1,item2,item3 in product(list1, list2, list3):
+    print(item1+item2+item3)
+```
+
+
