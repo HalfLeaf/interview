@@ -21,3 +21,20 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     36                                               # 方法6  堆排序算法merge方法可以用于合并多个列表
     37         1        150.0    150.0     35.4      i = list(merge(a, b, c))
 ```
+
+## 连接多个字典
+
+```python
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    19         1         16.0     16.0      4.8      a = {"a":1, "b":2, "c":3, "d":4}
+    20         1          5.0      5.0      1.5      b = {"e":1, "f":2, "g":3, "h":4}
+    21                                               # update 原地更新
+    22         1         13.0     13.0      3.9      c = a.update(b)
+    26                                               # 方法2  ** 可以解包字典，解包完后再使用dict或者{}合并
+    27         1          9.0      9.0      2.7      e = dict(**a, **b)
+    29                                               # 方法3 使用 itertools.chain()
+    30         1         14.0     14.0      4.2      f =dict(chain(a.items(), b.items()))
+    32                                               # 方法4  使用 collections.ChainMap()
+    33         1        131.0    131.0     39.1      g = dict(ChainMap(a, b))
+```
