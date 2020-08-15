@@ -39,3 +39,9 @@ Line #      Hits         Time  Per Hit   % Time  Line Contents
     32                                               # 方法4  使用 collections.ChainMap()
     33         1        131.0    131.0     39.1      g = dict(ChainMap(a, b))
 ```
+
+# 条件判断语法
+
+* <on_true> if <condition> else <on_false>
+* <condition> and <on_true> or <on_false>
+* (<on_false>, <on_true>)[condition]
