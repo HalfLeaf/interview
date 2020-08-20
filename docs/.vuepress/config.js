@@ -3,7 +3,7 @@ module.exports = {
   title: '进击的算法题',
   description: '进击的算法题',
   author: 'Half Leaf',
-  port:8866,
+  port:6868,
   head: [
     ['link', { rel: 'icon', href: '/favicon.png' }],
     ['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css' }],
