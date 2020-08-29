@@ -23,6 +23,7 @@ module.exports = {
       {text: 'Vue', link: '/vue/'},
       {text: 'MongoDB', link: '/mongodb/'},
       {text: '经典算法', link: '/algorithm/'},
+      {text: '试用体验', link: '/version/'},
       {text: 'Github', link: 'https://github.com/HalfLeaf/interview'},
       {text: '个人主页', link: 'http://halfleaf.github.io/'}  
     ],
