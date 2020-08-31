@@ -33,10 +33,6 @@
 
 # JavaScript 新版本特性
 
-::: tip 2020-08-30
+[ECMAScript 新特性](/version/es.md)
 
-当前使用主版本是ES6
-期待它的每次更新
-
-:::
 
