@@ -1,3 +1,5 @@
+# ECMAScript 新特性
+
 ## ES6 新特性（2015）
 
 * 类
@@ -38,7 +40,7 @@ class Cat extends Animal {
     }
 }
 var cat = new Cat('catch') cat.toString();
- ```
+```
 
 ### 2.模块化(Module)
 ES5不支持原生的模块化，在ES6中模块作为重要的组成部分被添加进来
@@ -64,6 +66,7 @@ ES6允许在一个模块中使用export来导出多个变量或函数
 #### 导入(import)
 ::: tip
 一条import 语句可以同时导入默认函数和其它变量
+
 import defaultMethod, { otherMethod } from 'xxx.js';
 :::
 
@@ -79,9 +82,10 @@ import defaultMethod, { otherMethod } from 'xxx.js';
 或者是用花括号括起的函数体（需要自行通过return来返回值，否则返回的是undefined）
 
 ### 4. 卸载监听器时的陷阱
-```javascript
-// 错误的做法
 
+错误的做法
+
+```javascript
 class PauseMenu extends React.Component{
   componentWillMount(){
     AppStateIOS.addEventListener('change', this.onAppPaused.bind(this));
@@ -92,8 +96,11 @@ class PauseMenu extends React.Component{
   onAppPaused(event){
   }
 }
+```
 
-// 正确的做法
+正确的做法
+
+```javascript
 class PauseMenu extends React.Component{
   constructor(props){
     super(props);
@@ -108,8 +115,11 @@ class PauseMenu extends React.Component{
   onAppPaused(event){
   }
 }
+```
 
-// 除上述的做法外，我们还可以这样做
+除上述的做法外，我们还可以这样做
+
+```javascript
 class PauseMenu extends React.Component{
   componentWillMount(){
     AppStateIOS.addEventListener('change', this.onAppPaused);
@@ -469,6 +479,7 @@ Atomics 的所有属性和方法都是静态的（与 Math 对象一样）。
 可以用来检测当前系统是否支持硬件级的原子操作。
 对于指定大小的数组，如果当前系统支持硬件级的原子操作，则返回 true；
 否则就意味着对于该数组，Atomics 对象中的各原子操作都只能用锁来实现
+
 此函数面向的是技术专家
 
 ##  ES9新特性（2018）
@@ -578,7 +589,7 @@ const obj2 = { ...obj1, z: 26 };
 
 ###  4.正则表达式命名捕获组
 
-ES2018允许命名捕获组使用符号 ?<name>，在打开捕获括号 ( 后立即命名
+ES2018允许命名捕获组使用符号 ?&lt;name&gt; ，在打开捕获括号 ( 后立即命名
 
 ```javascript
 const  reDate = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
@@ -600,163 +611,225 @@ let usDate = d.replace(reDate, '$<month>-$<day>-$<year>');
 
 ###  5.正则表达式反向断言
 
-ES2018引入以相同方式工作但是匹配前面的反向断言（lookbehind）
+匹配前面的反向断言（lookbehind）
 
-const  reLookbehind = /(?<=\D)\d+/,  match        = reLookbehind.exec('$123.89');
+```javascript
+const  reLookbehind = /(?<=\D)\d+/;
+const  match = reLookbehind.exec('$123.89');
 console.log( match[0] );
+```
 
-以上是 肯定反向断言，非数字 \D必须存在。同样的，还存在 否定反向断言，表示一个值必须不存在，例如：
-
-const  reLookbehindNeg = /(?<!\D)\d+/,  match           = reLookbehind.exec('$123.89');
+否定反向断言，表示一个值必须不存在
+```javascript
+const  reLookbehindNeg = /(?<!\D)\d+/;
+const  match = reLookbehind.exec('$123.89');
 console.log( match[0] );
+```
+
 ###  6.正则表达式dotAll模式
-正则表达式中点 .匹配除回车外的任何单字符，标记 s改变这种行为，允许行终止符的出现，例如：
 
-/hello.world/.test('hello\nworld');  /hello.world/s.test('hello\nworld');
+正则表达式中点 .匹配除回车外的任何单字符，标记 s改变这种行为，允许行终止符的出现
+
+```javascript
+/hello.world/.test('hello\nworld');
+/hello.world/s.test('hello\nworld');
+```
+
 ###  7.正则表达式 Unicode 转义
-到目前为止，在正则表达式中本地访问 Unicode 字符属性是不被允许的。ES2018添加了 Unicode 属性转义——形式为 \p{...}和 \P{...}，在正则表达式中使用标记 u (unicode) 设置，在 \p块儿内，可以以键值对的方式设置需要匹配的属性而非具体内容。例如：
+ES2018添加了 Unicode 属性转义——形式为 \p{...}和 \P{...}，
+在正则表达式中使用标记 u (unicode) 设置，在 \p块儿内，可以以键值对的方式设置需要匹配的属性而非具体内容
 
-const reGreekSymbol = /\p{Script=Greek}/u;reGreekSymbol.test('π');
-此特性可以避免使用特定 Unicode 区间来进行内容类型判断，提升可读性和可维护性。
+```javascript
+const reGreekSymbol = /\p{Script=Greek}/u;
+reGreekSymbol.test('π');
+```
 
 ###  8.非转义序列的模板字符串
-之前， \u开始一个 unicode 转义， \x开始一个十六进制转义， \后跟一个数字开始一个八进制转义。这使得创建特定的字符串变得不可能，例如Windows文件路径 C:\uuu\xxx\111。更多细节参考模板字符串。
 
-七、ES10新特性（2019）
-行分隔符（U + 2028）和段分隔符（U + 2029）符号现在允许在字符串文字中，与JSON匹配
-更加友好的 JSON.stringify
-新增了Array的 flat()方法和 flatMap()方法
-新增了String的 trimStart()方法和 trimEnd()方法
-Object.fromEntries()
-Symbol.prototype.description
-String.prototype.matchAll
-Function.prototype.toString()现在返回精确字符，包括空格和注释
-简化 try {} catch {},修改 catch 绑定
-新的基本数据类型 BigInt
-globalThis
-import()
-Legacy RegEx
-私有的实例方法和访问器
-1.行分隔符（U + 2028）和段分隔符（U + 2029）符号现在允许在字符串文字中，与JSON匹配
+
+## ES10新特性（2019）
+
+* 行分隔符（U + 2028）和段分隔符（U + 2029）符号现在允许在字符串文字中，与JSON匹配
+* 更加友好的 JSON.stringify
+* 新增了Array的 flat()方法和 flatMap()方法
+* 新增了String的 trimStart()方法和 trimEnd()方法
+* Object.fromEntries()
+* Symbol.prototype.description
+* String.prototype.matchAll
+* Function.prototype.toString()现在返回精确字符，包括空格和注释
+* 简化 try {} catch {},修改 catch 绑定
+* 新的基本数据类型 BigInt
+* globalThis
+* import()
+* Legacy RegEx
+* 私有的实例方法和访问器
+
+### 1.行分隔符（U + 2028）和段分隔符（U + 2029）符号现在允许在字符串文字中，与JSON匹配
 以前，这些符号在字符串文字中被视为行终止符，因此使用它们会导致SyntaxError异常。
 
-2.更加友好的 JSON.stringify
-如果输入 Unicode 格式但是超出范围的字符，在原先JSON.stringify返回格式错误的Unicode字符串。现在实现了一个改变JSON.stringify的第3阶段提案，因此它为其输出转义序列，使其成为有效Unicode（并以UTF-8表示）
+### 2.更加友好的 JSON.stringify
+如果输入 Unicode 格式但是超出范围的字符，在原先JSON.stringify返回格式错误的Unicode字符串
+现在实现了一个改变JSON.stringify的第3阶段提案，因此它为其输出转义序列，使其成为有效Unicode（并以UTF-8表示）
 
-3.新增了Array的 flat()方法和 flatMap()方法
+### 3.新增了Array的 flat()方法和 flatMap()方法
 flat()和 flatMap()本质上就是是归纳（reduce） 与 合并（concat）的操作。
 
-Array.prototype.flat()
+#### Array.prototype.flat()
+
 flat() 方法会按照一个可指定的深度递归遍历数组，并将所有元素与遍历到的子数组中的元素合并为一个新数组返回。
 
-var arr1 = [1, 2, [3, 4]];arr1.flat();
+```javascript
+var arr1 = [1, 2, [3, 4]];
+arr1.flat();
+var arr2 = [1, 2, [3, 4, [5, 6]]];
+arr2.flat();
+var arr3 = [1, 2, [3, 4, [5, 6]]];
+arr3.flat(2);
+```
 
-var arr2 = [1, 2, [3, 4, [5, 6]]];arr2.flat();
+使用 Infinity 作为深度，展开任意深度的嵌套数组arr3.flat(Infinity);
 
-var arr3 = [1, 2, [3, 4, [5, 6]]];arr3.flat(2);
-
-//使用 Infinity 作为深度，展开任意深度的嵌套数组arr3.flat(Infinity);
 其次，还可以利用 flat()方法的特性来去除数组的空项
-var arr4 = [1, 2, , 4, 5];arr4.flat();
-Array.prototype.flatMap()
-flatMap() 方法首先使用映射函数映射每个元素，然后将结果压缩成一个新数组。它与 map 和 深度值1的 flat 几乎相同，但 flatMap 通常在合并成一种方法的效率稍微高一些。 这里我们拿map方法与flatMap方法做一个比较。
 
+```javascript
+var arr4 = [1, 2, , 4, 5];
+arr4.flat();
+```
+
+#### Array.prototype.flatMap()
+
+flatMap() 方法首先使用映射函数映射每个元素，然后将结果压缩成一个新数组。
+它与 map 和 深度值1的 flat 几乎相同，但 flatMap 通常在合并成一种方法的效率稍微高一些
+
+```javascript
 var arr1 = [1, 2, 3, 4];
 arr1.map(x => [x * 2]);
-
 arr1.flatMap(x => [x * 2]);
+```
 
-// 只会将 flatMap 中的函数返回的数组 “压平” 一层arr1.flatMap(x => [[x * 2]]);
-4.新增了String的 trimStart()方法和 trimEnd()方法
-新增的这两个方法很好理解，分别去除字符串首尾空白字符，这里就不用例子说声明了。
+### 4.新增了String的 trimStart()方法和 trimEnd()方法
 
-5. Object.fromEntries()
-Object.entries()方法的作用是返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致（区别在于 for-in 循环也枚举原型链中的属性）。
+分别去除字符串首尾空白字符
 
-而 Object.fromEntries() 则是 Object.entries() 的反转。
+### 5. Object.fromEntries()
+Object.entries()方法的作用是返回一个给定对象自身可枚举属性的键值对数组，其排列与使用 for...in 循环遍历该对象时返回的顺序一致
 
-Object.fromEntries() 函数传入一个键值对的列表，并返回一个带有这些键值对的新对象。这个迭代参数应该是一个能够实现@iterator方法的的对象，返回一个迭代器对象。它生成一个具有两个元素的类似数组的对象，第一个元素是将用作属性键的值，第二个元素是与该属性键关联的值。
+区别在于 for-in 循环也枚举原型链中的属性
 
-通过 Object.fromEntries， 可以将 Map 转化为 Object:
-const map = new Map([ ['foo', 'bar'], ['baz', 42] ]);const obj = Object.fromEntries(map);console.log(obj);
-通过 Object.fromEntries， 可以将 Array 转化为 Object:
-const arr = [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ];const obj = Object.fromEntries(arr);console.log(obj);
-6. Symbol.prototype.description
+而 Object.fromEntries() 则是 Object.entries() 的反转
+
+Object.fromEntries() 函数传入一个键值对的列表，并返回一个带有这些键值对的新对象
+
+这个迭代参数应该是一个能够实现@iterator方法的的对象，返回一个迭代器对象
+
+它生成一个具有两个元素的类似数组的对象，第一个元素是将用作属性键的值，第二个元素是与该属性键关联的值
+
+通过 Object.fromEntries， 可以将 Map 转化为 Object
+
+```javascript
+const map = new Map([ ['foo', 'bar'], ['baz', 42] ]);
+const obj = Object.fromEntries(map);
+console.log(obj);
+```
+
+通过 Object.fromEntries， 可以将 Array 转化为 Object
+
+```javascript
+const arr = [ ['0', 'a'], ['1', 'b'], ['2', 'c'] ];
+const obj = Object.fromEntries(arr);
+console.log(obj);
+```
+
+### 6. Symbol.prototype.description
+
 通过工厂函数Symbol（）创建符号时，您可以选择通过参数提供字符串作为描述：
 
+```javascript
 const sym = Symbol('The description');
+```
+
 以前，访问描述的唯一方法是将符号转换为字符串：
-
+```javascript
 assert.equal(String(sym), 'Symbol(The description)');
+```
+
 现在引入了getter Symbol.prototype.description以直接访问描述：
-
+```javascript
 assert.equal(sym.description, 'The description');
-7. String.prototype.matchAll
-matchAll() 方法返回一个包含所有匹配正则表达式及分组捕获结果的迭代器。 在 matchAll 出现之前，通过在循环中调用regexp.exec来获取所有匹配项信息（regexp需使用/g标志：
+```
 
-const regexp = RegExp('foo*','g');const str = 'table football, foosball';
-while ((matches = regexp.exec(str)) !== null) {  console.log(`Found ${matches[0]}. Next starts at ${regexp.lastIndex}.`);
-  // expected output: "Found foo. Next starts at 19."}
-如果使用matchAll ，就可以不必使用while循环加exec方式（且正则表达式需使用／g标志）。使用matchAll 会得到一个迭代器的返回值，配合 for...of, array spread, or Array.from() 可以更方便实现功能：
+### 7. String.prototype.matchAll
+matchAll() 方法返回一个包含所有匹配正则表达式及分组捕获结果的迭代器
 
-const regexp = RegExp('foo*','g'); const str = 'table football, foosball';let matches = str.matchAll(regexp);
-for (const match of matches) {  console.log(match);}
-// Array [ "foo" ]
+使用matchAll 会得到一个迭代器的返回值，配合 for...of, array spread, or Array.from() 可以更方便实现功能
 
-// Call matchAll again to create a new iteratormatches = str.matchAll(regexp);
+```javascript
+const regexp = RegExp('foo*','g');
+const str = 'table football, foosball';
+let matches = str.matchAll(regexp);
+for (const match of matches) {
+    console.log(match);
+}
 Array.from(matches, m => m[0]);
+```
+
 matchAll可以更好的用于分组
-var regexp = /t(e)(st(\d?))/g;var str = 'test1test2';
+
+```javascript
+var regexp = /t(e)(st(\d?))/g;
+var str = 'test1test2';
 str.match(regexp);
 let array = [...str.matchAll(regexp)];
 array[0];
 array[1];
-8. Function.prototype.toString()现在返回精确字符，包括空格和注释
-function /* comment */ foo /* another comment */() {}
+```
 
-console.log(foo.toString());
-// ES2019 会把注释一同打印console.log(foo.toString());
-// 箭头函数const bar  = /* another comment */ () => {};
-console.log(bar.toString());
-9.修改 catch 绑定
-在 ES10 之前，我们必须通过语法为 catch 子句绑定异常变量，无论是否有必要。很多时候 catch 块是多余的。ES10 提案使我们能够简单的把变量省略掉。
+### 8. Function.prototype.toString()
+返回精确字符，包括空格和注释
 
-不算大的改动。
+### 9.修改 catch 绑定
 
-之前是
-
+```javascript
+//  之前是
 try {} catch(e) {}
-现在是
-
+//  现在是
 try {} catch {}
-10.新的基本数据类型 BigInt
-现在的基本数据类型（值类型）不止5种（ES6之后是六种）了哦！加上BigInt一共有七种基本数据类型，分别是：String、Number、Boolean、Null、Undefined、Symbol、BigInt
+```
 
-ES6、ES7、ES8学习指南
+### 10.新的基本数据类型 BigInt
 
-八、ES11新特性（2020）
-1.Promise.allSettled
+现在的基本数据类型（值类型）一共有七种基本数据类型，分别是：
+* String
+* Number
+* Boolean
+* Null
+* Undefined
+* Symbol
+* BigInt
+
+
+## ES11新特性（2020）
+* Promise.allSettled
+* 可选链
+* 空值合并运算符
+* dynamic-import
+* globalThis
+* BigInt
+* String.prototype.matchAll
+
+### 1.Promise.allSettled
+
 Promise.all 缺陷
-都知道 Promise.all 具有并发执行异步任务的能力。但它的最大问题就是如果其中某个任务出现异常(reject)，所有任务都会挂掉，Promise 直接进入 reject 状态。
+Promise.all 具有并发执行异步任务的能力
 
-想象这个场景：你的页面有三个区域，分别对应三个独立的接口数据，使用 Promise.all 来并发三个接口，如果其中任意一个接口服务异常，状态是 reject,这会导致页面中该三个区域数据全都无法渲染出来，因为任何 reject 都会进入 catch 回调, 很明显，这是无法接受的，如下：
+但它的最大问题就是如果其中某个任务出现异常(reject)，所有任务都会挂掉，Promise 直接进入 reject 状态
 
-Promise.all([
-    Promise.reject({code: 500, msg: '服务异常'}),
-    Promise.resolve({ code: 200, list: []}),
-    Promise.resolve({code: 200, list: []})
-])
-.then((ret) => {
-    // 如果其中一个任务是 reject，则不会执行到这个回调。
-    RenderContent(ret);
-})
-.catch((error) => {
-    // 本例中会执行到这个回调
-    // error: {code: 500, msg: "服务异常"}
-})
 Promise.allSettled 的优势
-我们需要一种机制，如果并发任务中，无论一个任务正常或者异常，都会返回对应的的状态（fulfilled 或者 rejected）与结果（业务 value 或者 拒因 reason），在 then 里面通过 filter 来过滤出想要的业务逻辑结果，这就能最大限度的保障业务当前状态的可访问性，而 Promise.allSettled 就是解决这问题的。
+我们需要一种机制，如果并发任务中，无论一个任务正常或者异常，都会返回对应的的状态（fulfilled 或者 rejected）与结果（业务 value 或者 拒因 reason），
 
+在 then 里面通过 filter 来过滤出想要的业务逻辑结果，这就能最大限度的保障业务当前状态的可访问性，而 Promise.allSettled 就是解决这问题的
+
+```javascript
 Promise.allSettled([
     Promise.reject({code: 500, msg: '服务异常'}),
     Promise.resolve({ code: 200, list: []}),
@@ -773,52 +846,59 @@ Promise.allSettled([
         return el.status !== 'rejected';
     }));
 });
-2.可选链
+```
+
+### 2.可选链(Optional Chaining)
+
 可选链 可让我们在查询具有多层级的对象时，不再需要进行冗余的各种前置校验。
 
 日常开发中，我们经常会遇到这种查询
 
+```javascript
 var name = user && user.info && user.info.name;
-又或是这种
-
 var age = user && user.info && user.info.getAge && user.info.getAge();
+```
+
 这是一种丑陋但又不得不做的前置校验，否则很容易命中 Uncaught TypeError: Cannot read property... 这种错误，这极有可能让你整个应用挂掉。
 
-用了 Optional Chaining ，上面代码会变成
+用了可选链，上面代码会变成
 
+```javascript
 var name = user?.info?.name;
 var age = user?.info?.getAge?.();
-可选链中的 ? 表示如果问号左边表达式有值, 就会继续查询问号后面的字段。根据上面可以看出，用可选链可以大量简化类似繁琐的前置校验操作，而且更安全。
+```
 
-3.空值合并运算符
-当我们查询某个属性时，经常会遇到，如果没有该属性就会设置一个默认的值。比如下面代码中查询玩家等级。
+可选链中的 ? 表示如果问号左边表达式有值, 就会继续查询问号后面的字段
 
+### 3.空值合并运算符
+
+当我们查询某个属性时，经常会遇到，如果没有该属性就会设置一个默认的值
+
+```javascript
 var level = (user.data && user.data.level) || '暂无等级';
-在 JS 中，空字符串、0 等，当进行逻辑操作符判断时，会自动转化为 false。在上面的代码里，如果玩家等级本身就是 0 级, 变量 level 就会被赋值 暂无等级 字符串，这是逻辑错误。
+```
 
-var level;
-if (typeof user.level === 'number') {
-    level = user.level;
-} elseif (!user.level) {
-    level = '暂无等级';
-} else {
-    level = user.level;
-}
-来看看用空值合并运算符如何处理
+在 JS 中，空字符串、0 等，当进行逻辑操作符判断时，会自动转化为 false
+在上面的代码里，如果玩家等级本身就是 0 级, 变量 level 就会被赋值 暂无等级 字符串，这是逻辑错误。
 
-// {
-//   "level": 0
-// }
+```javascript
 var level = `${user.level}级` ?? '暂无等级';
-// level -> '0级'
-用空值合并运算在逻辑正确的前提下，代码更加简洁。
+```
 
-空值合并运算符 与 可选链 相结合，可以很轻松处理多级查询并赋予默认值问题。
+空值合并运算符 与 可选链 相结合，可以很轻松处理多级查询并赋予默认值问题
 
+```javascript
 var level = user.data?.level ?? '暂无等级';
-4.dynamic-import
-按需 import 提案几年前就已提出，如今终于能进入 ES 正式规范。这里个人理解成 "按需" 更为贴切。现代前端打包资源越来越大，打包成几 M 的 JS 资源已成常态，而往往前端应用初始化时根本不需要全量加载逻辑资源，为了首屏渲染速度更快，很多时候都是按需加载，比如懒加载图片等。而这些按需执行逻辑资源都体现在某一个事件回调中去加载。
+```
 
+### 4.dynamic-import
+现代前端打包资源越来越大，打包成几 M 的 JS 资源已成常态，而往往前端应用初始化时根本不需要全量加载逻辑资源，
+
+为了首屏渲染速度更快，很多时候都是按需加载，比如懒加载图片等。
+
+而这些按需执行逻辑资源都体现在某一个事件回调中去加载。
+
+```javascript
 el.onclick = () => {
     import(`/path/current-logic.js`)
     .then((module) => {
@@ -828,13 +908,17 @@ el.onclick = () => {
         // load error;
     })
 }
-当然，webpack 目前已很好的支持了该特性。
+```
 
-5.globalThis
-JavaScript 在不同的环境获取全局对象有不同的方式，NodeJS 中通过 global, Web 中通过 window, self 等，有些甚至通过 this 获取，但通过 this 是及其危险的，this 在 JavaScript 中异常复杂，它严重依赖当前的执行上下文，这些无疑增加了获取全局对象的复杂性。
+### 5.globalThis
+JavaScript 在不同的环境获取全局对象有不同的方式，
+NodeJS 中通过 global, Web 中通过 window, self 等，有些甚至通过 this 获取，
+但通过 this 是及其危险的，this 在 JavaScript 中异常复杂，
+它严重依赖当前的执行上下文，这些无疑增加了获取全局对象的复杂性。
 
 过去获取全局对象，可通过一个全局函数:
 
+```
 var getGlobal = function () {
   if (typeof self !== 'undefined') { return self; }
   if (typeofwindow !== 'undefined') { returnwindow; }
@@ -843,73 +927,39 @@ var getGlobal = function () {
 };
 
 var globals = getGlobal();
+```
 
-// https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/globalThis
 而 globalThis 目的就是提供一种标准化方式访问全局对象，有了 globalThis后，你可以在任意上下文，任意时刻都能获取到全局对象。
 
-6.BigInt
-JavaScript 中 Number 类型只能安全的表示-(2^53-1)至 2^53-1 范的值，即 Number.MIN_SAFE_INTEGER 至 Number.MAX_SAFE_INTEGER，超出这个范围的整数计算或者表示会丢失精度。
+### 6.BigInt
 
-var num = Number.MAX_SAFE_INTEGER;  // -> 9007199254740991
+JavaScript 中 Number 类型只能安全的表示-(2^53-1)至 2^53-1 范的值，
+即 Number.MIN_SAFE_INTEGER 至 Number.MAX_SAFE_INTEGER，
+超出这个范围的整数计算或者表示会丢失精度。
 
-num = num + 1; // -> 9007199254740992
+为解决此问题，ES2020 提供一种新的数据类型：BigInt。
 
-// 再次加 +1 后无法正常运算
-num = num + 1; // -> 9007199254740992
+使用 BigInt 有两种方式：
 
-// 两个不同的值，却返回了true
-9007199254740992 === 9007199254740993// -> true
-为解决此问题，ES2020 提供一种新的数据类型：BigInt。使用 BigInt 有两种方式：
-
-在整数字面量后面加n。
+* 在整数字面量后面加n
+```javascript
 var bigIntNum = 9007199254740993n;
-使用 BigInt 函数。
+```
+
+* 使用 BigInt 函数
+
+```javascript
 var bigIntNum = BigInt(9007199254740);
 var anOtherBigIntNum = BigInt('9007199254740993');
-通过 BigInt， 我们可以安全的进行大数整型计算。
+```
 
-var bigNumRet = 9007199254740993n + 9007199254740993n; // -> -> 18014398509481986n
 
-bigNumRet.toString(); // -> '18014398509481986'
-注意:
-
-BigInt 是一种新的数据原始（primitive）类型。
-typeof9007199254740993n; // -> 'bigint'
-尽可能避免通过调用函数 BigInt 方式来实例化超大整型。因为参数的字面量实际也是 Number 类型的一次实例化，超出安全范围的数字，可能会引起精度丢失。
-7.String.prototype.matchAll
-The matchAll() method returns an iterator of all results matching a string against a regular expression, including capturing groups. ——MDN
-
-思考下面代码：
-
-var str = '<text>JS</text><text>正则</text>';
-var reg = /<\w+>(.*?)<\/\w+>/g;
-
-console.log(str.match(reg));
-// -> ["<text>JS</text>", "<text>正则</text>"]
-可以看出返回的数组里包含了父匹配项，但未匹配到子项（group）。移除全局搜索符"g"试试。
-
-var str = '<text>JS</text><text>正则</text>';
-// 注意这里没有全局搜素标示符"g"
-var reg = /<\w+>(.*?)<\/\w+>/;
-console.log(str.match(reg));
-
-// 上面会打印出
-/*
-[
-    "<text>JS</text>",
-    "JS",
-    index: 0,
-    input:
-    "<text>JS</text><text>正则</text>",
-    groups: undefined
-]
-*/
-这样可以获取到匹配的父项，包括子项（group），但只能获取到第一个满足的匹配字符。能看出上面无法匹配到<text>正则</text>。
+### 7.String.prototype.matchAll
 
 如果获取到全局所有匹配项，包括子项呢？
 
 ES2020 提供了一种简易的方式：String.prototype.matchAll, 该方法会返回一个迭代器。
-
+```javascript
 var str = '<text>JS</text><text>正则</text>';
 var allMatchs = str.matchAll(/<\w+>(.*?)<\/\w+>/g);
 
@@ -936,4 +986,4 @@ for (const match of allMatchs) {
     groups: undefined
 ]
 */
-能看出每次迭代中可获取所有的匹配，以及本次匹配的成功的一些其他元信息。
+```
