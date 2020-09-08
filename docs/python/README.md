@@ -47,3 +47,8 @@
 ## 魔法Python
 
 [魔法Python](/magic/README.md)
+
+
+## Python 算法分类详解
+
+[Python 算法分类详解](/python_algorithm/README.md)
