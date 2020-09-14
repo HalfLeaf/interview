@@ -1,6 +1,6 @@
 # -*-coding:utf-8-*-
 
-class Solution1:
+class Solution:
     def longestPalindrome(self, s: str) -> str:
         result = ""
         total = len(s)
@@ -21,10 +21,6 @@ class Solution1:
         else:
             return result if len(result) > len(sub) else sub
         return result
-
-class Solution:
-    def longestPalindrome(self, s: str) -> str:
-        pass
 
 
 if __name__ == '__main__':
