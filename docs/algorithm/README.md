@@ -19,6 +19,8 @@
 * [动态规划类型](/algorithm/dynamic-programming.md)
 * [贪心算法类型](/algorithm/greedy-algorithm.md)
 
+* [字符串匹配算法KMP](/algorithm/字符串匹配算法KMP.md)
+
 ### 排序算法
 ::: tip 排序算法
 * 快速排序
