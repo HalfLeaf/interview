@@ -3,10 +3,8 @@
 from typing import List,Dict
 
 class Solution:
-    def findItinerary(self):
-        pass
-
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.findItinerary())
+    print(s.findMaxConsecutiveOnes([1,1,0,1,1,1]))
