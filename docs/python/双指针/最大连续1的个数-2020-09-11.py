@@ -1,6 +1,6 @@
 #-*-coding:utf-8-*-
 
-from typing import List,Dict
+from typing import List
 
 class Solution:
     def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
@@ -12,15 +12,13 @@ class Solution:
             if nums[j] == 1:
                 j = j + 1
             else:
-                result = max(result, j-i)
+                if i != j:
+                    result = max(result, j - i)
+                j = j + 1
                 i = j
-                
+        result = max(result, j - i)
         return result
-                
-                
-                
-            
-        
+
 
 if __name__ == '__main__':
     s = Solution()
