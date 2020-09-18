@@ -16,22 +16,17 @@ class Solution:
             print('start', i, j)
             result.append(matrix[i][j])
             if direction:
-                if j == col - 1:
-                    i = i + 1
-                else:
-                    i = i - 1
-                    j = j + 1
+                i = i - 1
+                j = j + 1
             else:
                 i = i + 1
                 j = j - 1
-            print('middle', i, j)
             if not 0 <= j < col:
                 direction = 1
                 j = j + 1
             if not 0 <= i < row:
                 direction = 0
                 i = i + 1
-            print('end',  i, j)
         print(result)
 
 
