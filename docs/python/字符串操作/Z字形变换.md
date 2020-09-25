@@ -77,8 +77,39 @@ class Solution:
         return tmp
 ```
 
-
-
 ::: warning python源码文件位于
 /python/字符串操作/Z字形变换-2020-09-17.py
 :::
+
+
+##  大佬解法
+
+::: tip 解法1
+出现不同，比较剩余字符
+:::
+
+* 耗时 56 ms
+* 内存 13.5 MB
+
+### 解题思路
+
+字符串下标和行数所对应的关系，能够发现规律
+i表示行数的下标，当i为0时，下一个字符就需要放在i+1行，
+当i为2时，下一个字符需要放在i- 1行，因此可以定义一个标识位，
+flag为-1，当i=0和i= numRows-1时，flag取反
+最后''.join输出即可
+
+
+```python
+class Solution:
+    def convert(self, s: str, numRows: int) -> str:
+        if numRows < 2: return s
+        result = [''] * numRows
+        i, flag = 0, -1
+        for c in s:
+            result[i] += c
+            if i == 0 or i== numRows - 1:
+                flag = -flag
+            i += flag
+        return ''.join(result)
+```
